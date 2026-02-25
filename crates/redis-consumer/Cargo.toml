@@ -1,0 +1,15 @@
+[package]
+name = "redis-consumer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rdkafka = { version = "0.36", default-features = false, features = ["cmake-build", "tokio"] }
+redis = { version = "0.24", features = ["tokio-comp"] }
+envy = "0.4"
+
+common = { path = "../common" }
+tokio-stream = "0.1.18"

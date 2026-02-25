@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "crates/api-service",
+    "crates/redis-consumer",
+    "crates/cassandra-consumer",
+    "crates/common",
+]
+
+resolver = "2"
