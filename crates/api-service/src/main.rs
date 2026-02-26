@@ -15,6 +15,7 @@ use state::AppState;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    dotenvy::dotenv().ok();
     let config = Config::from_env();
 
     let producer = KafkaProducer::new(&config.kafka_brokers);
@@ -29,7 +30,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(state.clone()))
             .configure(configure_routes)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind((config.server_host, config.server_port))?
     .run()
     .await
 }

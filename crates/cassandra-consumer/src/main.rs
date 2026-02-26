@@ -13,6 +13,7 @@ use consumer::kafka_consumer::create_consumer;
 
 #[tokio::main]
 async fn main() {
+    dotenvy::dotenv().ok();
     let config = Config::from_env();
 
     let consumer = create_consumer(&config.kafka_brokers, &config.kafka_group_id);

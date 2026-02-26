@@ -10,6 +10,7 @@ serde_json = "1"
 rdkafka = { version = "0.36", default-features = false, features = ["cmake-build", "tokio"] }
 redis = { version = "0.24", features = ["tokio-comp"] }
 envy = "0.4"
+dotenvy = "0.15"
 
 common = { path = "../common" }
 tokio-stream = "0.1.18"
