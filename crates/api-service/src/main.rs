@@ -25,6 +25,8 @@ async fn main() -> std::io::Result<()> {
         kafka_topic: config.kafka_topic.clone(),
     };
 
+    println!("Server Running on {}:{}",config.server_host,config.server_port);
+
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(state.clone()))

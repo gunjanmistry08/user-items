@@ -1,7 +1,7 @@
 use crate::types::{Timestamp, UserId};
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize,Debug)]
 pub struct UserCreatedEvent {
     pub user_id: UserId,
     pub email: String,

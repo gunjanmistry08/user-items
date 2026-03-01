@@ -23,10 +23,16 @@ impl UserService {
             created_at: Utc::now(),
         };
 
+        dbg!(&event);
+
         let envelope = EventEnvelope::new(UserCreatedEvent::EVENT_TYPE, event);
+
+        dbg!(&envelope);
 
         let json = serde_json::to_string(&envelope).map_err(|e| e.to_string())?;
 
+        dbg!(&json);
+        
         self.producer
             .send(topic, &user_id.to_string(), &json)
             .await

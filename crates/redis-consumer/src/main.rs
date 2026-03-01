@@ -16,7 +16,7 @@ async fn main() {
     dotenvy::dotenv().ok();
     let config = Config::from_env();
 
-    let consumer = create_consumer(&config.kafka_brokers, &config.kafka_group_id);
+    let consumer = create_consumer(&config.kafka_brokers, "redis-group");
 
     consumer
         .subscribe(&[&config.kafka_topic])

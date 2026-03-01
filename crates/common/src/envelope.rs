@@ -2,7 +2,7 @@ use crate::types::Timestamp;
 use crate::version::EVENT_SCHEMA_VERSION;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize,Debug)]
 pub struct EventEnvelope<T> {
     pub event_id: String,
     pub event_type: String,
