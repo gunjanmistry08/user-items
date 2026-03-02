@@ -20,13 +20,13 @@ impl CassandraRepository {
         &self,
         user_id: &str,
         email: &str,
-        created_at: i64,
+        name: &str,
     ) -> Result<(), QueryError> {
         self.session
             .query(
-                "INSERT INTO users (user_id, email, created_at)
+                "INSERT INTO users (user_id, email, name)
                  VALUES (?, ?, ?)",
-                (user_id, email, created_at),
+                (user_id, email, name),
             )
             .await?;
 

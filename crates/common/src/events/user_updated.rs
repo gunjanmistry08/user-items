@@ -1,11 +1,11 @@
-use crate::types::{Timestamp, UserId};
+use crate::types::{ UserId};
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct UserUpdatedEvent {
     pub user_id: UserId,
+    pub new_name: String,
     pub new_email: String,
-    pub updated_at: Timestamp,
 }
 
 impl UserUpdatedEvent {

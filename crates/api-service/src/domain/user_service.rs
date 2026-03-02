@@ -1,4 +1,3 @@
-use chrono::Utc;
 use common::envelope::EventEnvelope;
 use common::events::UserCreatedEvent;
 use uuid::Uuid;
@@ -14,13 +13,13 @@ impl UserService {
         Self { producer }
     }
 
-    pub async fn create_user(&self, topic: &str, email: String) -> Result<(), String> {
+    pub async fn create_user(&self, topic: &str, email: String, name: String) -> Result<(), String> {
         let user_id = Uuid::new_v4();
 
         let event = UserCreatedEvent {
             user_id,
             email,
-            created_at: Utc::now(),
+            name,
         };
 
         dbg!(&event);

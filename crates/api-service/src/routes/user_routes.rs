@@ -5,6 +5,7 @@ use serde::Deserialize;
 #[derive(Deserialize,Debug)]
 pub struct CreateUserRequest {
     pub email: String,
+    pub name: String
 }
 
 pub async fn create_user(
@@ -14,7 +15,7 @@ pub async fn create_user(
     let service = UserService::new((*state.producer).clone());
 
     let result = service
-        .create_user(&state.kafka_topic, req.email.clone())
+        .create_user(&state.kafka_topic, req.email.clone(),req.name.clone())
         .await;
         dbg!(req);
     match result {
