@@ -32,14 +32,17 @@ async fn main() {
                 if let Some(payload) = msg.payload() {
                     let payload_str = std::str::from_utf8(payload).unwrap();
 
-                    if processor::user_processor::process_message(&repo, payload_str)
-                        .await
-                        .is_ok()
-                    {
-                        consumer
-                            .commit_message(&msg, rdkafka::consumer::CommitMode::Async)
-                            .unwrap();
+                    match processor::user_processor::process_message(&repo, payload_str).await {
+                        Ok(_) => {
+                            consumer
+                                .commit_message(&msg, rdkafka::consumer::CommitMode::Async)
+                                .unwrap();
+                        },
+                        Err(err) => {
+                            eprintln!("Kafka error: {:?}", err);
+                        }
                     }
+                    
                 }
             }
             Err(e) => eprintln!("Kafka error: {:?}", e),
